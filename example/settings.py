@@ -140,30 +140,13 @@ def get_logger(uid):
         logger.addHandler(consoleHandler)
     return logger
 
-REDIS_DB = None
-def get_key_value_store():
-    global REDIS_DB
-    if not REDIS_DB:
-        try:
-            REDIS_DB = redis.StrictRedis(host=REDIS_CONF['HOST'], port=REDIS_CONF['PORT'], password=REDIS_CONF['PASSWORD'], db=0)
-            REDIS_DB.set('check','testing connection...')
-        except Exception:
-            print('----------------------------------------------------------')
-            print('!!! Exception: Unable to connect to Redis')
-            print('!!! Make sure it is running on %s:%s' % (REDIS_CONF['HOST'],REDIS_CONF['PORT']))
-            print('----------------------------------------------------------')
-            return None
-    return REDIS_DB
-
-
 FB_HUB_CHALLENGE = 'your_secret_phrase_for_facebook'
 FB_PAGE_TOKEN = 'EAAYSaZC81QJkBABok5ZAkEQ2e9OoZArumsnsTH0hwZC3DeACDAfjf9ZBrIRd9uSmBgicvGs79it6t8DO7slWt45hs7pAkoBZABRZCeUQgGR8he6ZA6ZCxAAOPdp71o399m2qkouRkMFmkTZC57MfXVbyQl4FpfXtUeMiDbkwS6MvdXHAZDZD'
 FACEBOOK_APP_ID = '1709104912744601'
 
 DIALOG_CONFIG = {
     'WIT_TOKEN': 'S4KEVWCQUU3SW7IJPIZVVRHM6SMVVCVT',
-    'CHATBOT_MODULE' : 'example.chatbot',
+    'FACEBOOK_CHATBOT_MODULE' : 'example.chatbot',
     'GET_LOGGER' : get_logger,
-    'GET_STORAGE' : get_key_value_store,
     'FB_PAGE_TOKEN' : FB_PAGE_TOKEN
 }

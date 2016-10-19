@@ -3,8 +3,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views import generic
 from django.http.response import HttpResponse
 from golem.interfaces.facebook.interface import FacebookInterface
-from .settings import FB_HUB_CHALLENGE,DIALOG_CONFIG
+from .settings import FB_HUB_CHALLENGE,DIALOG_CONFIG,REDIS_CONF
 from .chatbot import get_new_settings
+from golem.persistence import init_redis
 import json
 
 class FacebookView(generic.View):
@@ -22,6 +23,8 @@ class FacebookView(generic.View):
     # Post function to handle Facebook messages
     def post(self, request, *args, **kwargs):
         if not FacebookInterface.message_queue:
+            print('Initializing redis...')
+            init_redis(REDIS_CONF)
             print('Initializing message queue...')
             FacebookInterface.init_queue(DIALOG_CONFIG)
             settings = get_new_settings()
