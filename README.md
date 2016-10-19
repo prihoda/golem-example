@@ -1,10 +1,3 @@
-# golem-example
-Example chatbot using golem dialog manager
+# Golem example project
 
-
-django-admin startproject {your_project_name}
-git submodule add git@github.com:prihoda/golem.git
-
-- create wit app
-- create facebook page
-- create facebook app
+See the docs at the [Golem Wiki](https://github.com/prihoda/golem/wiki).
