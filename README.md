@@ -2,7 +2,7 @@
 Example chatbot using golem dialog manager
 
 
-django-admin startproject project_name
+django-admin startproject {your_project_name}
 git submodule add git@github.com:prihoda/golem.git
 
 - create wit app
